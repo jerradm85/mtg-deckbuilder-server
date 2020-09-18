@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS mtg_decks_cards CASCADE;
+DROP TABLE IF EXISTS mtg_decks CASCADE;

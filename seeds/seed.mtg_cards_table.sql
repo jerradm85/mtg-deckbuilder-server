@@ -1,0 +1,1 @@
+INSERT INTO mtg_cards (card_name, )
