@@ -1,6 +1,5 @@
 require('dotenv').config()
 const express = require('express')
-const router = express.router()
 const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
@@ -26,10 +25,6 @@ app.use('/api/users', usersRouter)
 app.use('/api/decks', decksRouter)
 app.use('/api/cards', cardsRouter)
 app.use('/api/deckcards', deckCardsRouter)
-
-router.get('/', (req,res,next) => {
-    res.status(200).send("This Works!")
-})
 
 app.use(function errorHandler(error, req, res, next) {
     let response
