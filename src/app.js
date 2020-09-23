@@ -17,10 +17,6 @@ const morganOption = (NODE_ENV === 'production')
     ? 'tiny'
     : 'common';
 
-router.get('/', function(req,res,next) {
-    res.status(200).send("This Works!")
-})
-
 app.use(morgan(morganOption))
 app.use(cors())
 app.use(helmet())
@@ -30,6 +26,10 @@ app.use('/api/users', usersRouter)
 app.use('/api/decks', decksRouter)
 app.use('/api/cards', cardsRouter)
 app.use('/api/deckcards', deckCardsRouter)
+
+router.get('/', (req,res,next) => {
+    res.status(200).send("This Works!")
+})
 
 app.use(function errorHandler(error, req, res, next) {
     let response
