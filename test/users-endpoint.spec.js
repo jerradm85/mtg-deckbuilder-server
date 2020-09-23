@@ -23,4 +23,6 @@ describe('Users Endpoint', function() {
     before('cleanup', () => helpers.cleanTables(db))
 
     afterEach('cleanup', () => helpers.cleanTables(db))
+
+    context('')
 })
