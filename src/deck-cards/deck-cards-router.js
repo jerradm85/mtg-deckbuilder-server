@@ -8,7 +8,6 @@ deckCardsRouter
     .route('/:id')
     .get(requireAuth, (req, res, next) => {
         const knexInstance = req.app.get('db')
-        console.log(req.deck)
         DeckCardsService.getCardsByDeckId(knexInstance, req.params.id)
             .then(cards => {
                 res.json(cards)

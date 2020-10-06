@@ -26,8 +26,9 @@ usersRouter
             user_name
         )
             .then(hasUser => {
-                if (hasUser)
-                    return res.status(400).json({ error: `username already exists` })
+                if (hasUser) {
+                    return res.status(400).json({ error: `Username already exists` })
+                }
 
                 return UsersService.hashPassword(password)
                     .then(hashedPass => {

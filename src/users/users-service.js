@@ -14,17 +14,17 @@ const UsersService = {
 
     validatePass(password) {
         if (password.length < 8) {
-            return 'password must be longer than 8 characters'
+            return 'Password must be longer than 8 characters'
         }
         if (password.length > 72) {
-            return 'password must be shorter than 72 characters'
+            return 'Password must be shorter than 72 characters'
         }
         if (password.startsWith(' ') || password.endsWith(' ')) {
-            return 'password may not start with or end with spaces'
+            return 'Password may not start or end with spaces'
         }
-        // if(!regexValidation.test(password)) {
-        //     return 'password must contain at least one upper-case, lower-case, number, and special character'
-        // }
+        if(!regexValidation.test(password)) {
+            return 'password must contain at least one upper-case, lower-case, number, and special character'
+        }
     },
 
     hashPassword(password) {

@@ -19,7 +19,9 @@ decksRouter
     .post(requireAuth, jsonParser, (req, res, next) => {
         const { name, cards, text } = req.body;
 
-        //validation goes here
+        if(!name) {
+            return res.status(400).json({error: 'Deck must have a name.'})
+        }
 
         DecksService.createDeck(
             req.app.get('db'),

@@ -29,7 +29,6 @@ function requireAuth(req, res, next) {
           if (!passwordsMatch) {
             return res.status(401).json({ error: 'Unauthorized request' })
           }
-          console.log('this is working')
           req.user = user
           next()
         })
