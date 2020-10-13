@@ -1,8 +1,6 @@
 const express = require('express')
 const cardsRouter = express.Router()
-const jsonParser = express.json()
 const CardsService = require('../cards/cards-service')
-const { requireAuth } = require('../middleware/jwt-auth')
 
 cardsRouter
     .route('/')

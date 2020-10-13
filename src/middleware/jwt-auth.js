@@ -1,5 +1,4 @@
 const AuthService = require('../auth/auth-service')
-const bcrypt = require('bcryptjs');
 
 function requireAuth(req, res, next) {
   const authToken = req.get('Authorization') || ''
@@ -16,14 +15,12 @@ function requireAuth(req, res, next) {
 
     AuthService.getUserWithUserName(
       req.app.get('db'),
-      payload.sub, // subject sent in jwt from authRouter is the user_name that we verified and we use to query db
+      payload.sub,
     )
       .then(user => {
         if (!user)
           return res.status(401).json({ error: 'Unauthorized request' })
 
-      // creates a user item on the req object from the and sets it equal to the user that 
-      // was retrieve from the db using the payload sub(which we set as username when creating the jwt)
       req.user = user
       next()
     })
@@ -38,5 +35,5 @@ function requireAuth(req, res, next) {
 }
 
 module.exports = {
-  requireAuth,
+  requireAuth
 }

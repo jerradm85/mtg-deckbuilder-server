@@ -1,5 +1,3 @@
-const xss = require('xss')
-
 const DeckCardsService = {
 
     getCardsByDeckId(db, deck_id) {

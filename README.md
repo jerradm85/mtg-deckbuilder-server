@@ -1,26 +1,116 @@
-# Express Boilerplate
+# <b>MTG Deckbuilder Capstone - Server</b>
 
-This is a boilerplate project used for starting new projects!
+## `Method: GET`
+### <b>All Cards</b>
+- URL: /api/cards
+- Required Params:   
+    `none`
+- On Success:   
+`Code: 200`   
+`Content-type: json`   
 
-## Set up
+- Content:
+```
+    {
+        "id": 1,
+        "name": "Alpine Watchdog",
+        "image": "url"
+    },
+    {
+        "id": 2,
+        "name": "Angelic Ascension",
+        "image": "url"
+    },
+    {
+        "id": 3,
+        "name": "Anointed Chorister",
+        "image": "url"
+    }
+```
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+### <b>Deck by user ID</b>
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+- URL: `/api/decks`
+- Required Params:   
+    `req.user.id (supplied from auth token)`
+- On Success:   
+    `Code: 200`   
+    `Content-type: json`      
+- Content:
+```
+   {
+       "id": 30,
+        "user_id": 1,
+        "name": "New Deck",
+        "text": "Big Deck"
+   }
+```
+### <b>Cards by Deck ID</b>
 
-## Scripts
+- URL: `/api/deckcards/:id`
+- Required Params:   
+    `req.user.id (supplied from auth token)`
+- On Success:   
+    `Code: 200`   
+    `Content-type: json`     
+- Content:
+```
+    {
+        "id": 1,
+        "deck_id": 30,
+        "card_id": 1,
+        "name": "Alpine Watchdog",
+        "image": "https://media.wizards.com/2020/m21/en_kS7LiunFPF.png"
+    },
+    {
+        "id": 1,
+        "deck_id": 30,
+        "card_id": 1,
+        "name": "Alpine Watchdog",
+        "image": "https://media.wizards.com/2020/m21/en_kS7LiunFPF.png"
+    }
+``` 
 
-Start the application `npm start`
+## `Method: POST`
 
-Start nodemon for the application `npm run dev`
+### <b>Create User</b>
+- URL: `/api/users`
+- URL Params:   
+    `none`
+- Required Params:   
+    `full_name - full name of user`   
+    `user_name - new user name`   
+    `password: - password for new user`
+- Optional Params:
+    `nickname: - optional nickname if desired`
+- On Success:   
+    `Code: 201: Created`   
+    `Content-type: json`
+- On Failure:   
+    `Code: 400: Bad Request`   
+    `Code: 400: Missing field in request body.`     
+- Content: 
+```
+    {
+        "id": "5",
+        "user_name": "TestUser1",
+        "full_name": "TestUser1",
+        "nickname": "",
+        "date_created": "2020-10-13T22:04:28.869Z"
+    }
+```
 
-Run the tests `npm test`
+## `Method: DELETE`
 
-## Deploying
-
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+### <b>Deck by ID</b>
+- URL: `/api/decks`
+- Required Params:   
+    `deck_id = integer (number of deck to delete)`    
+- Optional Params:   
+    `none`
+- On Success:   
+    `Code: 204: No Content`   
+- On Failure:   
+    `Error: 'Deck does not exist.'`
+- Content:    
+   `no content`

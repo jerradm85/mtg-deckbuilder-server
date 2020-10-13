@@ -6,9 +6,9 @@ const UsersService = require('./users-service')
 
 usersRouter
     .post('/', jsonParser, (req, res, next) => {
-        //destructure the body of the post request
+
         const { full_name, nickname, user_name, password } = req.body
-        //loop through required fields, making sure they exist in body
+
         for (const field of Object.keys({ full_name, user_name, password })) {
             if (!req.body[field]) {
                 return res.status(400).json({ error: `Missing ${field} in request body.` })

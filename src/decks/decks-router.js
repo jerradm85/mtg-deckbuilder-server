@@ -36,7 +36,6 @@ decksRouter
             })
             .then((deck) => {
                 res.status(201)
-                    .location(`location goes here`)
                     .json(deck)
             })
             .catch(next)
