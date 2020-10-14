@@ -35,7 +35,7 @@ decksRouter
                 )
             })
             .then((deck) => {
-                res.status(201)
+                return res.status(201)
                     .json(deck)
             })
             .catch(next)
